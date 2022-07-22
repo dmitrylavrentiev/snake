@@ -1,0 +1,16 @@
+.row {
+   display: flex; 
+}
+
+.col {
+    width: 20px;
+    height: 20px;
+}
+
+.wall {
+    background: red;
+}
+
+.snake {
+    background: green;
+}
