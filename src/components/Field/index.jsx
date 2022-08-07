@@ -3,12 +3,13 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import './field.css'
 
-import { moveAction } from '../../store/actions'
+import { moveAction, generateRandomFood } from '../../store/actions'
 
 export default function Field() {
 
     const field = useSelector(state => state.fieldStore.field)
     const snake = useSelector(state => state.fieldStore.snake)
+    const food = useSelector(state => state.fieldStore.food)
 
     const dispatch = useDispatch()
 
@@ -20,9 +21,13 @@ export default function Field() {
         document.addEventListener('keydown', keyPrassHandler, true)
     }, [])
 
+    useEffect(() => {
+        dispatch(generateRandomFood())
+    }, [])
+
     return(
         <div className="field">
-            <p>{snake[0][0]} {snake[0][1]}</p>
+            <p>Score: {snake.length}</p>
             {field.map(row => {
                 return (
                     <div className="row" key={row[0].id + '1'}>
@@ -32,6 +37,8 @@ export default function Field() {
                                 className = 'wall'
                             } else if(col.data === 'o'){
                                 className = 'snake'
+                            } else if(col.data === 'f') {
+                                className = 'food'
                             }
                             return <div className={`col ${className}`} key={col.id}>{col.data}</div>
                         })}

@@ -1,3 +1,4 @@
 export const INCREMENT = 'INCREMENT'
 export const DECREMENT = 'DECREMENT'
 export const MOVE = 'MOVE'
+export const GENERATE_RANDOME_FOOD = 'GENERATE_RANDOME_FOOD'

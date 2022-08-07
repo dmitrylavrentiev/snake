@@ -10,7 +10,6 @@ function App() {
   return (
     <Provider store={store}>
       <div className="App">
-        hello
         <Index />
       </div>
     </Provider>

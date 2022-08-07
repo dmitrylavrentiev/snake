@@ -1,7 +1,10 @@
 
 
-export default function oneStep(field, keyCode, snake) {
+export default function oneStep(keyCode, state, generateRandomFood) {
+    let {snake, food} = state
+    const field = JSON.parse(JSON.stringify(state.field))
     const newPosition = [...snake[0]]
+    let newState = {}
    
     if(keyCode === 39) { // to the right
         newPosition[1]++
@@ -16,7 +19,7 @@ export default function oneStep(field, keyCode, snake) {
         newPosition[0]++
     }
     
-    if(field[newPosition[0]][newPosition[1]].data == '0') {
+    if(field[newPosition[0]][newPosition[1]].data === '0') {
         const tail = snake.pop()
         snake.unshift(newPosition)
 
@@ -25,6 +28,14 @@ export default function oneStep(field, keyCode, snake) {
 
     }
 
+    if(field[newPosition[0]][newPosition[1]].data === 'f') {
+        snake.unshift(newPosition)
+        field[newPosition[0]][newPosition[1]] = {...field[newPosition[0]][newPosition[1]], data: 'o'} 
+        food = generateRandomFood(state).food
+        
+        field[food[0]][food[1]] = {...field[food[0]][food[1]], data: 'f'} 
+    }
+    
 
-    return {field, snake}
+    return {...newState, field, snake, food}
 }

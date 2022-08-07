@@ -5,12 +5,31 @@
 .col {
     width: 20px;
     height: 20px;
+    background: #1d1e30;
+    box-sizing: border-box;
+    position: relative;
+    color: #1d1e30
 }
 
-.wall {
-    background: red;
+.col::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 50%;
+    border-radius: 50%;
+    background: #32324b;
 }
 
-.snake {
-    background: green;
+.wall::after {
+    background: #e93554;
+}
+
+.snake::after {
+    background: #64d2fa;
+}
+.food::after {
+    background: #66fa64;
 }
